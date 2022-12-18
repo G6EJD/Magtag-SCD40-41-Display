@@ -26,7 +26,7 @@ void setup() {
   digitalWrite(EPD_RESET, LOW);        // hardware power down mode
   digitalWrite(SPEAKER_SHUTDOWN, LOW); // off
   digitalWrite(NEOPIXEL_POWER, HIGH);  // off
-  long long SleepDelay = 60 * 60 * 1000000;
+  long long SleepDelay = 60 * 60 * 1000000LL;
   esp_sleep_enable_timer_wakeup(SleepDelay);
   esp_deep_sleep_start();
 }
@@ -50,7 +50,8 @@ void display_sensor() {
   display.setCursor(5, 80); display.print("Humi:" + String(humidity, 0) + "%");
   String Level = "Good";
   if (co2 >= 1000 && co2 < 2000) Level = "Poor";
-  if (co2 >= 2000 && co2 < 5000) Level = "V.Bad";
+  if (co2 >= 2000 && co2 < 5000) Level = "Bad";
+  if (co2 >= 5000)               Level = "V.Bad";
   display.setCursor(160, 45);
   display.setTextSize(4);
   display.print(Level);
