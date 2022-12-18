@@ -26,7 +26,8 @@ void setup() {
   digitalWrite(EPD_RESET, LOW);        // hardware power down mode
   digitalWrite(SPEAKER_SHUTDOWN, LOW); // off
   digitalWrite(NEOPIXEL_POWER, HIGH);  // off
-  esp_sleep_enable_timer_wakeup(60 * 60 * 1000000);
+  long SleepDelay = 60 * 60 * 1000000;
+  esp_sleep_enable_timer_wakeup(SleepDelay);
   esp_deep_sleep_start();
 }
 
